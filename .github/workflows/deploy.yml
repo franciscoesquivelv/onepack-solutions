@@ -24,13 +24,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Copy site files to clean directory
+        run: |
+          mkdir -p _site
+          cp -r "WEBSITE OPS/index.html" _site/
+          cp -r "WEBSITE OPS/nosotros.html" _site/
+          cp -r "WEBSITE OPS/assets" _site/
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './WEBSITE OPS'
+          path: './_site'
 
       - name: Deploy to GitHub Pages
         id: deployment
