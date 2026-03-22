@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "onepack-site",
+      "runtimeExecutable": "/opt/homebrew/bin/node",
+      "runtimeArgs": ["-e", "const h=require('http'),f=require('fs'),p=require('path'),d='/Users/franciscoesquivel/Documents/GitHub/onepack-solutions/WEBSITE OPS',m={'html':'text/html','css':'text/css','js':'text/javascript','svg':'image/svg+xml','png':'image/png','webp':'image/webp','jpg':'image/jpeg','ico':'image/x-icon','json':'application/json','ttf':'font/ttf','otf':'font/opentype','woff':'font/woff','woff2':'font/woff2'};h.createServer((q,r)=>{let u=q.url==='/'?'/index.html':decodeURIComponent(q.url.split('?')[0]),fp=p.join(d,u);f.readFile(fp,(e,c)=>{if(e){r.writeHead(404);r.end('Not found');return}let ext=p.extname(fp).slice(1);r.writeHead(200,{'Content-Type':m[ext]||'application/octet-stream'});r.end(c)})}).listen(3000,()=>console.log('Server on 3000'))"],
+      "port": 3000
+    }
+  ]
+}
