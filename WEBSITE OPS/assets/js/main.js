@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const service = form.querySelector('#service').value;
       const message = form.querySelector('#message').value;
 
-      const subject = encodeURIComponent(`Contacto Web — ${name} (${company || 'No especificada'})`);
+      const subject = encodeURIComponent(`Contacto Web - ${name} (${company || 'No especificada'})`);
       const body = encodeURIComponent(
         `Nombre: ${name}\nEmpresa: ${company || 'No especificada'}\nCorreo: ${email}\nServicio de interés: ${service || 'No seleccionado'}\n\nMensaje:\n${message}`
       );
@@ -228,7 +228,7 @@ function initPalletAnimation() {
   if (totalSteps === 0 || pallets.length === 0) return;
 
   // Set scroll track height to create scroll distance
-  var scrollDistance = totalSteps * 300; // 300px per step
+  var scrollDistance = totalSteps * 450; // 450px per step for comfortable reading
   track.style.height = (wrapper.offsetHeight + scrollDistance) + 'px';
 
   // Set first step as active
