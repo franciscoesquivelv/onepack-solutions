@@ -215,58 +215,55 @@ function animateCounter(el, target) {
 
 // ---- PALLET STACK ANIMATION ----
 function initPalletAnimation() {
-  const wrapper = document.querySelector('.pallet-animation-wrapper');
-  if (!wrapper || typeof gsap === 'undefined') return;
+  var track = document.querySelector('.pallet-scroll-track');
+  var wrapper = document.querySelector('.pallet-animation-wrapper');
+  if (!track || !wrapper || typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
 
   gsap.registerPlugin(ScrollTrigger);
 
-  const pallets = wrapper.querySelectorAll('.pallet-visual');
-  const steps = wrapper.querySelectorAll('.pallet-step');
-  const dots = wrapper.querySelectorAll('.pallet-dot');
-  const totalSteps = steps.length;
+  var pallets = wrapper.querySelectorAll('.pallet-stack-visual .pallet-visual');
+  var steps = wrapper.querySelectorAll('.pallet-step');
+  var dots = wrapper.querySelectorAll('.pallet-dot');
+  var totalSteps = steps.length;
+
+  if (totalSteps === 0 || pallets.length === 0) return;
+
+  // Set scroll track height to create scroll distance
+  var scrollDistance = totalSteps * 300; // 300px per step
+  track.style.height = (wrapper.offsetHeight + scrollDistance) + 'px';
 
   // Set first step as active
-  if (steps.length > 0) {
-    steps[0].classList.add('active');
-    if (dots.length > 0) dots[0].classList.add('active');
-  }
+  steps[0].classList.add('active');
+  if (dots.length > 0) dots[0].classList.add('active');
 
+  // Use ScrollTrigger on the track — wrapper stays sticky via CSS
   ScrollTrigger.create({
-    trigger: wrapper,
+    trigger: track,
     start: 'top top',
-    end: '+=' + (totalSteps * 100) + '%',
-    pin: true,
-    scrub: 0.5,
+    end: 'bottom bottom',
+    scrub: 0.3,
     onUpdate: function(self) {
       var progress = self.progress;
       var currentStep = Math.min(Math.floor(progress * totalSteps), totalSteps - 1);
 
-      // Update pallets - lift from top of stack (top pallet = last child)
-      for (var i = 0; i < pallets.length; i++) {
-        var palletIndex = pallets.length - 1 - i; // reverse: top pallet first
-        if (palletIndex >= (pallets.length - currentStep)) {
-          pallets[palletIndex].classList.add('lifted');
+      // Lift pallets from top (last child = top of stack)
+      for (var i = pallets.length - 1; i >= 0; i--) {
+        var liftIndex = pallets.length - 1 - i;
+        if (liftIndex < currentStep) {
+          pallets[i].classList.add('lifted');
         } else {
-          pallets[palletIndex].classList.remove('lifted');
+          pallets[i].classList.remove('lifted');
         }
       }
 
       // Update text steps
       for (var j = 0; j < steps.length; j++) {
-        if (j === currentStep) {
-          steps[j].classList.add('active');
-        } else {
-          steps[j].classList.remove('active');
-        }
+        steps[j].classList.toggle('active', j === currentStep);
       }
 
       // Update dots
       for (var k = 0; k < dots.length; k++) {
-        if (k === currentStep) {
-          dots[k].classList.add('active');
-        } else {
-          dots[k].classList.remove('active');
-        }
+        dots[k].classList.toggle('active', k === currentStep);
       }
     }
   });
