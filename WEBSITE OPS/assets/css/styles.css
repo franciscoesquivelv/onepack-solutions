@@ -695,6 +695,14 @@ img {
   height: 200px;
 }
 
+.palletless-img {
+  width: 100%;
+  max-width: 340px;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
 /* ---- POOLING MENTION ---- */
 .pooling-mention {
   margin-top: 48px;
