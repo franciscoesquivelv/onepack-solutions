@@ -228,7 +228,7 @@ function initPalletAnimation() {
   if (totalSteps === 0 || pallets.length === 0) return;
 
   // Set scroll track height to create scroll distance
-  var scrollDistance = totalSteps * 450; // 450px per step for comfortable reading
+  var scrollDistance = totalSteps * 600; // 600px per step for comfortable reading
   track.style.height = (wrapper.offsetHeight + scrollDistance) + 'px';
 
   // Set first step as active

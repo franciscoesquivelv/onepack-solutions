@@ -437,7 +437,7 @@ img {
 }
 
 .marquee-item img {
-  height: 40px;
+  height: 44px;
   width: auto;
   opacity: 0.5;
   filter: brightness(0) invert(1);
@@ -463,12 +463,13 @@ img {
 .metrics-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
+  max-width: 860px;
+  margin: 0 auto;
 }
 
 .metric-item {
   text-align: center;
-  padding: 32px 20px;
+  padding: 40px 32px;
   border-right: 1px solid rgba(255,255,255,0.08);
 }
 
@@ -477,18 +478,20 @@ img {
 }
 
 .metric-number {
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(2.8rem, 5vw, 4.2rem);
   font-weight: 900;
   color: var(--orange);
   line-height: 1;
   letter-spacing: -0.03em;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
 
 .metric-desc {
   font-size: 0.9rem;
   color: var(--gray-300);
   line-height: 1.5;
+  max-width: 180px;
+  margin: 0 auto;
 }
 
 /* ---- SECTION COMMON ---- */
