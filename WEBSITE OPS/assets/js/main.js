@@ -48,18 +48,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const navToggle = document.getElementById('navToggle');
   const navLinks = document.getElementById('navLinks');
 
-  navToggle.addEventListener('click', () => {
-    navToggle.classList.toggle('active');
-    navLinks.classList.toggle('open');
-  });
-
-  // Close on link click
-  navLinks.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-      navToggle.classList.remove('active');
-      navLinks.classList.remove('open');
+  if (navToggle && navLinks) {
+    navToggle.addEventListener('click', () => {
+      navToggle.classList.toggle('active');
+      navLinks.classList.toggle('open');
     });
-  });
+
+    // Close on link click
+    navLinks.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        navToggle.classList.remove('active');
+        navLinks.classList.remove('open');
+      });
+    });
+  }
 
   // ---- HERO CANVAS (Particle Network) ----
   initHeroCanvas();
@@ -79,21 +81,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ---- CONTACT FORM (mailto fallback) ----
   const form = document.getElementById('contactForm');
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const name = form.querySelector('#name').value;
-    const company = form.querySelector('#company').value;
-    const email = form.querySelector('#email').value;
-    const service = form.querySelector('#service').value;
-    const message = form.querySelector('#message').value;
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = form.querySelector('#name').value;
+      const company = form.querySelector('#company').value;
+      const email = form.querySelector('#email').value;
+      const service = form.querySelector('#service').value;
+      const message = form.querySelector('#message').value;
 
-    const subject = encodeURIComponent(`Contacto Web — ${name} (${company || 'No especificada'})`);
-    const body = encodeURIComponent(
-      `Nombre: ${name}\nEmpresa: ${company || 'No especificada'}\nCorreo: ${email}\nServicio de interés: ${service || 'No seleccionado'}\n\nMensaje:\n${message}`
-    );
+      const subject = encodeURIComponent(`Contacto Web — ${name} (${company || 'No especificada'})`);
+      const body = encodeURIComponent(
+        `Nombre: ${name}\nEmpresa: ${company || 'No especificada'}\nCorreo: ${email}\nServicio de interés: ${service || 'No seleccionado'}\n\nMensaje:\n${message}`
+      );
 
-    window.location.href = `mailto:info@onepack.com.sv?subject=${subject}&body=${body}`;
-  });
+      window.location.href = `mailto:info@onepack.com.sv?subject=${subject}&body=${body}`;
+    });
+  }
 });
 
 // ---- REVEAL ON SCROLL (Intersection Observer) ----
@@ -120,6 +124,12 @@ function initAnimations() {
 
   // ---- STAT COUNTERS ----
   initCounters();
+
+  // ---- METRIC COUNTERS ----
+  initMetricCounters();
+
+  // ---- PALLET STACK ANIMATION ----
+  initPalletAnimation();
 }
 
 // ---- STAT COUNTER ANIMATION ----
@@ -140,6 +150,49 @@ function initCounters() {
   statNumbers.forEach(el => counterObserver.observe(el));
 }
 
+// ---- METRIC COUNTER ANIMATION ----
+function initMetricCounters() {
+  const metricNumbers = document.querySelectorAll('.metric-number[data-target]');
+
+  const metricObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        if (el.dataset.static === 'true') return;
+
+        const target = parseInt(el.dataset.target);
+        const prefix = el.dataset.prefix || '';
+        const suffix = el.dataset.suffix || '';
+
+        animateMetricCounter(el, target, prefix, suffix);
+        metricObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  metricNumbers.forEach(el => metricObserver.observe(el));
+}
+
+function animateMetricCounter(el, target, prefix, suffix) {
+  const duration = 2000;
+  const startTime = performance.now();
+
+  function update(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    // Ease out cubic
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const current = Math.round(eased * target);
+    el.textContent = prefix + current + suffix;
+
+    if (progress < 1) {
+      requestAnimationFrame(update);
+    }
+  }
+
+  requestAnimationFrame(update);
+}
+
 function animateCounter(el, target) {
   const duration = 2000;
   const startTime = performance.now();
@@ -158,6 +211,65 @@ function animateCounter(el, target) {
   }
 
   requestAnimationFrame(update);
+}
+
+// ---- PALLET STACK ANIMATION ----
+function initPalletAnimation() {
+  const wrapper = document.querySelector('.pallet-animation-wrapper');
+  if (!wrapper || typeof gsap === 'undefined') return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const pallets = wrapper.querySelectorAll('.pallet-visual');
+  const steps = wrapper.querySelectorAll('.pallet-step');
+  const dots = wrapper.querySelectorAll('.pallet-dot');
+  const totalSteps = steps.length;
+
+  // Set first step as active
+  if (steps.length > 0) {
+    steps[0].classList.add('active');
+    if (dots.length > 0) dots[0].classList.add('active');
+  }
+
+  ScrollTrigger.create({
+    trigger: wrapper,
+    start: 'top top',
+    end: '+=' + (totalSteps * 100) + '%',
+    pin: true,
+    scrub: 0.5,
+    onUpdate: function(self) {
+      var progress = self.progress;
+      var currentStep = Math.min(Math.floor(progress * totalSteps), totalSteps - 1);
+
+      // Update pallets - lift from top of stack (top pallet = last child)
+      for (var i = 0; i < pallets.length; i++) {
+        var palletIndex = pallets.length - 1 - i; // reverse: top pallet first
+        if (palletIndex >= (pallets.length - currentStep)) {
+          pallets[palletIndex].classList.add('lifted');
+        } else {
+          pallets[palletIndex].classList.remove('lifted');
+        }
+      }
+
+      // Update text steps
+      for (var j = 0; j < steps.length; j++) {
+        if (j === currentStep) {
+          steps[j].classList.add('active');
+        } else {
+          steps[j].classList.remove('active');
+        }
+      }
+
+      // Update dots
+      for (var k = 0; k < dots.length; k++) {
+        if (k === currentStep) {
+          dots[k].classList.add('active');
+        } else {
+          dots[k].classList.remove('active');
+        }
+      }
+    }
+  });
 }
 
 // ---- HERO CANVAS — PARTICLE GRID / NETWORK ----
