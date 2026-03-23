@@ -223,7 +223,6 @@ function initPalletAnimation() {
 
   var pallets = wrapper.querySelectorAll('.pallet-stack-visual .pallet-visual');
   var steps = wrapper.querySelectorAll('.pallet-step');
-  var dots = wrapper.querySelectorAll('.pallet-dot');
   var totalSteps = steps.length;
 
   if (totalSteps === 0 || pallets.length === 0) return;
@@ -234,7 +233,6 @@ function initPalletAnimation() {
 
   // Set first step as active
   steps[0].classList.add('active');
-  if (dots.length > 0) dots[0].classList.add('active');
 
   // Use ScrollTrigger on the track — wrapper stays sticky via CSS
   ScrollTrigger.create({
@@ -246,7 +244,7 @@ function initPalletAnimation() {
       var progress = self.progress;
       var currentStep = Math.min(Math.floor(progress * totalSteps), totalSteps - 1);
 
-      // Lift pallets from top (last child = top of stack)
+      // Lift slip sheets from top (last child = top of stack)
       for (var i = pallets.length - 1; i >= 0; i--) {
         var liftIndex = pallets.length - 1 - i;
         if (liftIndex < currentStep) {
@@ -259,11 +257,6 @@ function initPalletAnimation() {
       // Update text steps
       for (var j = 0; j < steps.length; j++) {
         steps[j].classList.toggle('active', j === currentStep);
-      }
-
-      // Update dots
-      for (var k = 0; k < dots.length; k++) {
-        dots[k].classList.toggle('active', k === currentStep);
       }
     }
   });

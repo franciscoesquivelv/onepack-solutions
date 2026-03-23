@@ -774,44 +774,30 @@ img {
 
 .pallet-stack-visual {
   position: relative;
-  width: 320px;
-  height: 300px;
+  width: 360px;
+  height: 340px;
 }
 
 .pallet-visual {
   position: absolute;
   left: 0;
   width: 100%;
-  height: 36px;
-  border-radius: 6px;
+  height: auto;
   transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.7s ease;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
 }
 
-/* Each pallet positioned from bottom up */
-.pallet-visual:nth-child(1) { bottom: 0; background: linear-gradient(135deg, #5a3a1e 0%, #7a4f2a 100%); border: 1px solid rgba(255,103,29,0.25); }
-.pallet-visual:nth-child(2) { bottom: 48px; background: linear-gradient(135deg, #634020 0%, #85552c 100%); border: 1px solid rgba(255,103,29,0.2); }
-.pallet-visual:nth-child(3) { bottom: 96px; background: linear-gradient(135deg, #6c4622 0%, #905b2e 100%); border: 1px solid rgba(255,103,29,0.18); }
-.pallet-visual:nth-child(4) { bottom: 144px; background: linear-gradient(135deg, #754c24 0%, #9b6130 100%); border: 1px solid rgba(255,103,29,0.15); }
-.pallet-visual:nth-child(5) { bottom: 192px; background: linear-gradient(135deg, #7e5226 0%, #a66732 100%); border: 1px solid rgba(255,103,29,0.12); }
+/* Each slip sheet positioned from bottom up — stacked with perspective offset */
+.pallet-visual:nth-child(1) { bottom: 0; z-index: 1; }
+.pallet-visual:nth-child(2) { bottom: 30px; z-index: 2; }
+.pallet-visual:nth-child(3) { bottom: 60px; z-index: 3; }
+.pallet-visual:nth-child(4) { bottom: 90px; z-index: 4; }
+.pallet-visual:nth-child(5) { bottom: 120px; z-index: 5; }
 
 .pallet-visual.lifted {
-  transform: translateY(-160px) scale(0.95);
+  transform: translateY(-180px) scale(0.9);
   opacity: 0;
 }
-
-/* Pallet surface details */
-.pallet-visual::before,
-.pallet-visual::after {
-  content: '';
-  position: absolute;
-  left: 8%;
-  right: 8%;
-  height: 1px;
-  background: rgba(255,255,255,0.12);
-}
-.pallet-visual::before { top: 10px; }
-.pallet-visual::after { bottom: 10px; }
 
 /* Text panel for each step */
 .pallet-text-panel {
@@ -864,27 +850,6 @@ img {
 }
 
 /* Progress dots for the pallet steps */
-.pallet-progress {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  display: flex;
-  gap: 12px;
-}
-
-.pallet-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.15);
-  transition: var(--transition);
-}
-
-.pallet-dot.active {
-  background: var(--orange);
-  box-shadow: 0 0 12px rgba(255,103,29,0.4);
-}
-
 /* ---- WHY SECTION (Por Qué Onepack) ---- */
 .why-section {
   padding: 120px 0;
@@ -1306,23 +1271,19 @@ img {
   }
 
   .pallet-stack-container {
-    height: 280px;
+    height: 240px;
   }
 
   .pallet-stack-visual {
-    width: 260px;
-    height: 260px;
-  }
-
-  .pallet-visual {
-    height: 30px;
+    width: 280px;
+    height: 220px;
   }
 
   .pallet-visual:nth-child(1) { bottom: 0; }
-  .pallet-visual:nth-child(2) { bottom: 40px; }
-  .pallet-visual:nth-child(3) { bottom: 80px; }
-  .pallet-visual:nth-child(4) { bottom: 120px; }
-  .pallet-visual:nth-child(5) { bottom: 160px; }
+  .pallet-visual:nth-child(2) { bottom: 24px; }
+  .pallet-visual:nth-child(3) { bottom: 48px; }
+  .pallet-visual:nth-child(4) { bottom: 72px; }
+  .pallet-visual:nth-child(5) { bottom: 96px; }
 
   .pallet-text-panel {
     min-height: 220px;
@@ -1384,10 +1345,13 @@ img {
   }
 
   .pallet-stack-visual {
-    width: 200px;
+    width: 220px;
+    height: 180px;
   }
 
-  .pallet-visual {
-    height: 26px;
-  }
+  .pallet-visual:nth-child(1) { bottom: 0; }
+  .pallet-visual:nth-child(2) { bottom: 20px; }
+  .pallet-visual:nth-child(3) { bottom: 40px; }
+  .pallet-visual:nth-child(4) { bottom: 60px; }
+  .pallet-visual:nth-child(5) { bottom: 80px; }
 }
