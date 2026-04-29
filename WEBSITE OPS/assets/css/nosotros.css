@@ -218,7 +218,24 @@
 /* ---- VALUES SECTION ---- */
 .about-values {
   padding: 120px 0;
-  background: var(--navy-dark);
+  position: relative;
+  background-image: url('../../assets/imgs/stack-wooden-pallets-for-industrial-and-transport-2026-03-18-14-50-00-utc.webp');
+  background-size: cover;
+  background-position: center;
+  background-attachment: scroll;
+}
+
+.about-values::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 15, 30, 0.82);
+  z-index: 0;
+}
+
+.about-values .container {
+  position: relative;
+  z-index: 1;
 }
 
 .values-grid {
