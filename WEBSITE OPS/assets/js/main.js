@@ -105,11 +105,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const data = await res.json();
 
         if (data.success) {
-          msgEl.style.background = 'rgba(34,197,94,0.12)';
-          msgEl.style.color      = '#16a34a';
-          msgEl.style.border     = '1px solid rgba(34,197,94,0.3)';
-          msgEl.textContent      = 'Mensaje enviado. Te contactamos pronto.';
-          msgEl.style.display    = 'block';
+          msgEl.style.background  = 'rgba(34,197,94,0.12)';
+          msgEl.style.color       = '#16a34a';
+          msgEl.style.border      = '1px solid rgba(34,197,94,0.3)';
+          msgEl.textContent       = 'Mensaje enviado. Te contactamos pronto.';
+          msgEl.style.opacity     = '0';
+          msgEl.style.transform   = 'translateY(8px)';
+          msgEl.style.transition  = 'opacity 0.4s ease, transform 0.4s ease';
+          msgEl.style.display     = 'block';
+          msgEl.offsetHeight;
+          msgEl.style.opacity     = '1';
+          msgEl.style.transform   = 'translateY(0)';
           form.reset();
         } else {
           throw new Error(data.message || 'Error al enviar');
