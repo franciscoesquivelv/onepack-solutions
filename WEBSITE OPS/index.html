@@ -446,6 +446,9 @@
         </div>
 
         <form class="contact-form reveal-up" id="contactForm">
+          <input type="hidden" name="access_key" value="d542179f-c955-44ca-97e3-5d65ca54f1a0">
+          <input type="hidden" name="subject" value="Contacto Web — Onepack Solutions">
+          <input type="hidden" name="from_name" value="Onepack Sitio Web">
           <div class="form-row">
             <div class="form-group">
               <label for="name">Nombre</label>
@@ -480,7 +483,8 @@
             <label for="message">Mensaje</label>
             <textarea id="message" name="message" rows="4" placeholder="¿Qué necesitas y en qué cantidad? Si todavía no sabes qué producto, describe el problema y te ayudamos."></textarea>
           </div>
-          <button type="submit" class="btn btn-primary btn-full">Enviar mensaje</button>
+          <button type="submit" class="btn btn-primary btn-full" id="submitBtn">Enviar mensaje</button>
+          <div id="formMessage" style="display:none; margin-top:16px; padding:16px 20px; border-radius:8px; font-size:0.95rem; font-weight:500;"></div>
         </form>
       </div>
     </div>

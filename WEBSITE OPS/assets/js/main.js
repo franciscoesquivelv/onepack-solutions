@@ -89,20 +89,41 @@ document.addEventListener('DOMContentLoaded', () => {
   // ---- CONTACT FORM ----
   const form = document.getElementById('contactForm');
   if (form) {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const name    = form.querySelector('#name').value;
-      const company = form.querySelector('#company').value;
-      const email   = form.querySelector('#email').value;
-      const service = form.querySelector('#service').value;
-      const message = form.querySelector('#message').value;
 
-      const subject = encodeURIComponent(`Contacto Web - ${name}${company ? ' (' + company + ')' : ''}`);
-      const body    = encodeURIComponent(
-        `Nombre: ${name}\nEmpresa: ${company || 'No especificada'}\nCorreo: ${email}\nProducto de interés: ${service || 'No seleccionado'}\n\nMensaje:\n${message}`
-      );
+      const submitBtn  = document.getElementById('submitBtn');
+      const msgEl      = document.getElementById('formMessage');
+      const formData   = new FormData(form);
 
-      window.location.href = `mailto:info@onepack.com.sv?subject=${subject}&body=${body}`;
+      submitBtn.disabled    = true;
+      submitBtn.textContent = 'Enviando...';
+      msgEl.style.display   = 'none';
+
+      try {
+        const res  = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: formData });
+        const data = await res.json();
+
+        if (data.success) {
+          msgEl.style.background = 'rgba(34,197,94,0.12)';
+          msgEl.style.color      = '#16a34a';
+          msgEl.style.border     = '1px solid rgba(34,197,94,0.3)';
+          msgEl.textContent      = 'Mensaje enviado. Te contactamos pronto.';
+          msgEl.style.display    = 'block';
+          form.reset();
+        } else {
+          throw new Error(data.message || 'Error al enviar');
+        }
+      } catch {
+        msgEl.style.background = 'rgba(239,68,68,0.1)';
+        msgEl.style.color      = '#dc2626';
+        msgEl.style.border     = '1px solid rgba(239,68,68,0.3)';
+        msgEl.textContent      = 'No se pudo enviar. Escríbenos directamente a info@onepack.com.sv';
+        msgEl.style.display    = 'block';
+      } finally {
+        submitBtn.disabled    = false;
+        submitBtn.textContent = 'Enviar mensaje';
+      }
     });
   }
 
