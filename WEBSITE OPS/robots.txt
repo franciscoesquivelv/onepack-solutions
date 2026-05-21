@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://onepack.com.sv/sitemap.xml
+Sitemap: https://www.onepack.com.sv/sitemap.xml
