@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://onepack.com.sv/sitemap.xml

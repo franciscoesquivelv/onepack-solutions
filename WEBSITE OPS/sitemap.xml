@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://onepack.com.sv/</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://onepack.com.sv/assets/imgs/lumber-warehouse-storage-wooden-timber-goods-stor-2026-03-19-22-01-46-utc.webp</image:loc>
+      <image:title>Tarimas de madera nuevas Onepack Solutions</image:title>
+      <image:caption>Tarimas de taco 1m x 1,2m en bodega Soyapango, El Salvador</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://onepack.com.sv/assets/imgs/wooden-pallet-for-chemical-products-2026-03-19-21-54-35-utc.webp</image:loc>
+      <image:title>Tarima de madera Onepack</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://onepack.com.sv/assets/imgs/plastic-slip-sheet.webp</image:loc>
+      <image:title>Slip Sheets Onepack Solutions</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://onepack.com.sv/nosotros.html</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>
