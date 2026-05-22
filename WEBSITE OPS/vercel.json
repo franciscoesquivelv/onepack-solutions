@@ -1,8 +1,9 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "cleanUrls": true,
+  "trailingSlash": false,
   "redirects": [
     { "source": "/home", "destination": "/", "permanent": true },
-    { "source": "/nosotros", "destination": "/nosotros.html", "permanent": true },
     { "source": "/contact", "destination": "/#contacto", "permanent": true },
     { "source": "/contacto", "destination": "/#contacto", "permanent": true },
     { "source": "/productos", "destination": "/#productos", "permanent": true },
