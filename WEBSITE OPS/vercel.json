@@ -1,0 +1,16 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    { "source": "/home", "destination": "/", "permanent": true },
+    { "source": "/nosotros", "destination": "/nosotros.html", "permanent": true },
+    { "source": "/contact", "destination": "/#contacto", "permanent": true },
+    { "source": "/contacto", "destination": "/#contacto", "permanent": true },
+    { "source": "/productos", "destination": "/#productos", "permanent": true },
+    { "source": "/productos/:slug*", "destination": "/#productos", "permanent": true },
+    { "source": "/soluciones", "destination": "/#soluciones", "permanent": true },
+    { "source": "/blog", "destination": "/", "permanent": true },
+    { "source": "/blog/:slug*", "destination": "/", "permanent": true },
+    { "source": "/politica-de-privacidad", "destination": "/", "permanent": true },
+    { "source": "/cart", "destination": "/", "permanent": true }
+  ]
+}
