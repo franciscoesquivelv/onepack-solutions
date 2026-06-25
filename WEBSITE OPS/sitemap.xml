@@ -3,7 +3,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.onepack.com.sv/</loc>
-    <lastmod>2026-05-20</lastmod>
+    <lastmod>2026-06-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -21,9 +21,49 @@
     </image:image>
   </url>
   <url>
-    <loc>https://www.onepack.com.sv/nosotros</loc>
-    <lastmod>2026-05-20</lastmod>
+    <loc>https://www.onepack.com.sv/pallets</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.onepack.com.sv/assets/imgs/wooden-pallet-for-chemical-products-2026-03-19-21-54-35-utc.webp</image:loc>
+      <image:title>Tarimas y pallets de madera, plástico y eco-madera en El Salvador</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.onepack.com.sv/pooling</loc>
+    <lastmod>2026-06-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.onepack.com.sv/assets/imgs/background-image-of-warehouse-interior-with-forkli-2026-03-19-22-06-56-utc.webp</image:loc>
+      <image:title>Pallet pooling de tarimas en El Salvador</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.onepack.com.sv/palletless</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.onepack.com.sv/assets/imgs/push-pull-palletless-system.webp</image:loc>
+      <image:title>Sistema palletless con slip sheets y push/pull en El Salvador</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.onepack.com.sv/insumos</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.onepack.com.sv/assets/imgs/close-up-of-workers-packed-flat-package-action-w-2026-01-07-05-48-33-utc.webp</image:loc>
+      <image:title>Insumos de embalaje: flejes, esquineros, stretch film en El Salvador</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.onepack.com.sv/nosotros</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>

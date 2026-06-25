@@ -32,9 +32,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ---- NAVBAR SCROLL ----
   const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 50);
-  }, { passive: true });
+  if (navbar) {
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    }, { passive: true });
+  }
 
   // ---- MOBILE NAV + BACKDROP ----
   const navToggle = document.getElementById('navToggle');
@@ -43,15 +45,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function openNav() {
     navToggle.classList.add('active');
+    navToggle.setAttribute('aria-expanded', 'true');
     navLinks.classList.add('open');
-    backdrop.classList.add('visible');
+    if (backdrop) backdrop.classList.add('visible');
     document.body.style.overflow = 'hidden';
   }
 
   function closeNav() {
     navToggle.classList.remove('active');
+    navToggle.setAttribute('aria-expanded', 'false');
     navLinks.classList.remove('open');
-    backdrop.classList.remove('visible');
+    if (backdrop) backdrop.classList.remove('visible');
     document.body.style.overflow = '';
   }
 
@@ -98,34 +102,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
       submitBtn.disabled    = true;
       submitBtn.textContent = 'Enviando...';
-      msgEl.style.display   = 'none';
+      if (msgEl) { msgEl.hidden = true; msgEl.classList.remove('form-message--success', 'form-message--error'); }
 
       try {
         const res  = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: formData });
         const data = await res.json();
 
         if (data.success) {
-          msgEl.style.background  = 'rgba(34,197,94,0.12)';
-          msgEl.style.color       = '#16a34a';
-          msgEl.style.border      = '1px solid rgba(34,197,94,0.3)';
-          msgEl.textContent       = 'Mensaje enviado. Te contactamos pronto.';
-          msgEl.style.opacity     = '0';
-          msgEl.style.transform   = 'translateY(8px)';
-          msgEl.style.transition  = 'opacity 0.4s ease, transform 0.4s ease';
-          msgEl.style.display     = 'block';
-          msgEl.offsetHeight;
-          msgEl.style.opacity     = '1';
-          msgEl.style.transform   = 'translateY(0)';
+          if (msgEl) {
+            msgEl.classList.add('form-message--success');
+            msgEl.textContent = 'Mensaje enviado. Te contactamos pronto.';
+            msgEl.hidden = false;
+          }
           form.reset();
         } else {
           throw new Error(data.message || 'Error al enviar');
         }
       } catch {
-        msgEl.style.background = 'rgba(239,68,68,0.1)';
-        msgEl.style.color      = '#dc2626';
-        msgEl.style.border     = '1px solid rgba(239,68,68,0.3)';
-        msgEl.textContent      = 'No se pudo enviar. Escríbenos directamente a info@onepack.com.sv';
-        msgEl.style.display    = 'block';
+        if (msgEl) {
+          msgEl.classList.add('form-message--error');
+          msgEl.textContent = 'No se pudo enviar. Escríbenos directamente a info@onepack.com.sv';
+          msgEl.hidden = false;
+        }
       } finally {
         submitBtn.disabled    = false;
         submitBtn.textContent = 'Enviar mensaje';
@@ -233,28 +231,44 @@ function initSolutionsTabs() {
 
   if (!tabBtns.length || !tabPanels.length) return;
 
-  tabBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const target = btn.dataset.tab;
+  function activateTab(btn, focus) {
+    const target = btn.dataset.tab;
 
-      // Update buttons
-      tabBtns.forEach(b => {
-        b.classList.remove('active');
-        b.setAttribute('aria-selected', 'false');
-      });
-      btn.classList.add('active');
-      btn.setAttribute('aria-selected', 'true');
+    // Update buttons (roving tabindex for WAI-ARIA tabs pattern)
+    tabBtns.forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-selected', 'false');
+      b.setAttribute('tabindex', '-1');
+    });
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected', 'true');
+    btn.setAttribute('tabindex', '0');
+    if (focus) btn.focus();
 
-      // Update panels
-      tabPanels.forEach(panel => {
-        panel.classList.remove('active');
-      });
-      const activePanel = document.getElementById(`tab-${target}`);
-      if (activePanel) activePanel.classList.add('active');
+    // Update panels
+    tabPanels.forEach(panel => panel.classList.remove('active'));
+    const activePanel = document.getElementById(`tab-${target}`);
+    if (activePanel) activePanel.classList.add('active');
 
-      // On mobile: scroll tab into view
-      if (window.innerWidth <= 768) {
-        btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    // On mobile: scroll tab into view
+    if (window.innerWidth <= 768) {
+      btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+  }
+
+  tabBtns.forEach((btn, i) => {
+    btn.addEventListener('click', () => activateTab(btn, false));
+
+    // Arrow-key navigation between tabs
+    btn.addEventListener('keydown', (e) => {
+      let next = null;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = (i + 1) % tabBtns.length;
+      else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = (i - 1 + tabBtns.length) % tabBtns.length;
+      else if (e.key === 'Home') next = 0;
+      else if (e.key === 'End') next = tabBtns.length - 1;
+      if (next !== null) {
+        e.preventDefault();
+        activateTab(tabBtns[next], true);
       }
     });
   });
@@ -264,6 +278,9 @@ function initSolutionsTabs() {
 function initHeroCanvas() {
   const canvas = document.getElementById('heroCanvas');
   if (!canvas) return;
+
+  // Respect reduced-motion: skip the perpetual particle animation entirely.
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   const ctx = canvas.getContext('2d');
   let particles = [];

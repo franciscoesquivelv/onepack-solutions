@@ -1,0 +1,12 @@
+# === Sistema operativo ===
+.DS_Store
+**/.DS_Store
+
+# === Sistema interno de agentes — NUNCA commitear ni publicar ===
+WEBSITE OPS/AGENTS/
+
+# === Carpetas internas (no son del sitio web) ===
+Informes/
+
+# === Config local de herramientas ===
+.claude/

@@ -1,0 +1,202 @@
+/* ========================================
+   ONEPACK SOLUTIONS — SHARED SUBPAGE STYLES
+   Loaded by pallets, pooling, palletless, insumos
+   (single source of truth for primitives these pages share)
+   ======================================== */
+
+/* ---- BREADCRUMB ---- */
+.pallet-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--gray-400);
+  margin-bottom: 20px;
+}
+.pallet-breadcrumb a { color: var(--gray-400); text-decoration: none; transition: color 0.2s ease; }
+.pallet-breadcrumb a:hover { color: var(--orange-light); }
+.pallet-breadcrumb span:last-child { color: var(--gray-300); }
+
+/* ---- PAGE HERO CTAS ---- */
+.page-hero-ctas {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
+
+/* ---- BADGE (pallet type cards + insumo cards) ---- */
+.pallet-type-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: var(--orange);
+  color: var(--white);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+/* In static (non-overlay) card headers, allow inline placement */
+.insumo-card-tags .pallet-type-badge { position: static; }
+
+.pallet-type-badge--secondary {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.25);
+}
+.insumo-card-tags .pallet-type-badge--secondary {
+  background: var(--navy);
+  border: none;
+}
+
+/* ---- STEP CYCLE (pooling + palletless "cómo funciona") ---- */
+.cycle-steps {
+  margin-top: 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 780px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cycle-step {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 24px;
+  align-items: flex-start;
+  padding: 32px 0;
+}
+
+.cycle-step-number {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--orange);
+  opacity: 0.25;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  transition: opacity 0.3s ease;
+  padding-top: 4px;
+}
+
+.cycle-step:hover .cycle-step-number { opacity: 0.7; }
+
+.cycle-step-content h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+
+.cycle-step-content p {
+  font-size: 0.95rem;
+  color: var(--gray-400);
+  line-height: 1.7;
+}
+
+.cycle-connector {
+  width: 2px;
+  height: 32px;
+  background: linear-gradient(to bottom, rgba(255,103,29,0.3), rgba(255,103,29,0.1));
+  margin-left: 35px;
+}
+
+.cycle-rule {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  max-width: 780px;
+  margin: 48px auto 0;
+  padding: 20px 28px;
+  background: rgba(255, 103, 29, 0.08);
+  border: 1px solid rgba(255, 103, 29, 0.2);
+  border-radius: var(--radius);
+}
+.cycle-rule svg { flex-shrink: 0; margin-top: 2px; }
+.cycle-rule span { font-size: 0.95rem; color: var(--gray-300); line-height: 1.6; }
+.cycle-rule strong { color: var(--white); }
+
+/* ---- FAQ (all four subpages) ---- */
+.pallet-faq {
+  padding: 120px 0;
+  background: var(--gray-100);
+  color: var(--navy-dark);
+}
+.pallet-faq .section-title { color: var(--navy); }
+
+.faq-list {
+  max-width: 760px;
+  margin: 64px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.faq-item { border-bottom: 1px solid var(--gray-200); }
+.faq-item:last-child { border-bottom: none; }
+
+.faq-question {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 24px 28px;
+  background: var(--white);
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--navy);
+  font-family: inherit;
+  transition: background 0.2s ease;
+}
+.faq-question:hover { background: var(--gray-100); }
+
+.faq-question svg {
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+  color: var(--orange-text);
+}
+.faq-question[aria-expanded="true"] svg { transform: rotate(180deg); }
+
+/* Animated collapse via grid-rows (padding lives on the inner <p> so it clips cleanly) */
+.faq-answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  background: var(--white);
+  transition: grid-template-rows 0.3s ease;
+}
+.faq-answer.open { grid-template-rows: 1fr; }
+.faq-answer p {
+  overflow: hidden;
+  min-height: 0;
+  font-size: 0.95rem;
+  color: var(--gray-500);
+  line-height: 1.8;
+  margin: 0;
+  padding: 0 28px;
+}
+.faq-answer.open p { padding: 0 28px 24px; }
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 768px) {
+  .page-hero-ctas { flex-direction: column; }
+  .page-hero-ctas .btn { text-align: center; }
+  .cycle-step { grid-template-columns: 56px 1fr; gap: 16px; }
+  .cycle-step-number { font-size: 2rem; }
+  .cycle-connector { margin-left: 27px; }
+}
+
+@media (max-width: 480px) {
+  .faq-question { padding: 20px; font-size: 0.95rem; }
+  .faq-answer p { padding: 0 20px; }
+  .faq-answer.open p { padding: 0 20px 20px; }
+}

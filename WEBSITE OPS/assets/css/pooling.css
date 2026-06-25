@@ -1,0 +1,188 @@
+/* ========================================
+   ONEPACK SOLUTIONS — POOLING PAGE
+   (breadcrumb, page-hero-ctas, cycle-*, FAQ are in subpage.css)
+   ======================================== */
+
+/* ---- POOLING HERO ---- */
+.pooling-hero-img {
+  position: absolute;
+  inset: 0;
+  background-image: url('../../assets/imgs/background-image-of-warehouse-interior-with-forkli-2026-03-19-22-06-56-utc.webp');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.18;
+}
+
+/* ---- EXPLAINER SECTION ---- */
+.pooling-explainer {
+  padding: 120px 0;
+  background: var(--gray-100);
+  color: var(--navy-dark);
+}
+
+.explainer-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.explainer-text .section-title { color: var(--navy); margin-bottom: 24px; }
+
+.explainer-text p {
+  font-size: 1rem;
+  color: var(--gray-500);
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+.explainer-visual {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.explainer-visual img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  display: block;
+}
+
+/* ---- CYCLE SECTION (step layout lives in subpage.css) ---- */
+.pooling-cycle {
+  padding: 120px 0;
+  background: var(--navy-dark);
+}
+
+/* ---- BENEFITS SECTION ---- */
+.pooling-benefits {
+  padding: 120px 0;
+  background: var(--gray-100);
+  color: var(--navy-dark);
+}
+
+.pooling-benefits .section-title { color: var(--navy); }
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 64px;
+}
+
+.benefit-card {
+  padding: 36px 28px;
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: var(--transition);
+}
+
+.benefit-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 50px rgba(0, 30, 97, 0.08);
+  border-color: rgba(255, 103, 29, 0.25);
+}
+
+.benefit-icon {
+  width: 52px;
+  height: 52px;
+  background: rgba(255, 103, 29, 0.08);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.benefit-card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.benefit-card p {
+  font-size: 0.9rem;
+  color: var(--gray-500);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ---- PROFILE SECTION ---- */
+.pooling-profile {
+  padding: 120px 0;
+  background: var(--navy-mid);
+}
+
+.profile-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.profile-visual {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.profile-visual img {
+  width: 100%;
+  height: 480px;
+  object-fit: cover;
+  display: block;
+}
+
+.profile-text .section-title { margin-bottom: 24px; }
+
+.profile-text p {
+  font-size: 1rem;
+  color: var(--gray-300);
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+.profile-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 28px 0 32px;
+}
+
+.profile-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.profile-check svg { flex-shrink: 0; margin-top: 2px; }
+
+.profile-check span {
+  font-size: 0.95rem;
+  color: var(--gray-300);
+  line-height: 1.5;
+}
+
+/* ---- FAQ (reuse pallet-faq styles) ---- */
+.pooling-faq {
+  background: var(--gray-100);
+  color: var(--navy-dark);
+}
+
+.pooling-faq .section-title { color: var(--navy); }
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 1024px) {
+  .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+  .explainer-layout, .profile-layout { grid-template-columns: 1fr; gap: 48px; }
+  .explainer-visual img, .profile-visual img { height: 320px; }
+}
+
+@media (max-width: 480px) {
+  .benefits-grid { grid-template-columns: 1fr; }
+}

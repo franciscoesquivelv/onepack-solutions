@@ -13,6 +13,7 @@
   --orange: #ff671d;
   --orange-light: #ff8a4c;
   --orange-dark: #e55a10;
+  --orange-text: #c2490a; /* AA-accessible orange for text/icons on light backgrounds (4.9:1) */
   --navy: #001e61;
   --navy-dark: #0a0f1e;
   --navy-mid: #111a35;
@@ -147,7 +148,9 @@ img {
 }
 
 .navbar--solid {
-  background: var(--navy-dark);
+  background: rgba(10, 15, 30, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 
@@ -226,11 +229,15 @@ img {
 .nav-toggle {
   display: none;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 5px;
   background: none;
   border: none;
   cursor: pointer;
   padding: 8px;
+  min-width: 44px;
+  min-height: 44px;
   border-radius: 8px;
   transition: var(--transition);
 }
@@ -1213,14 +1220,15 @@ img {
 }
 
 /* ---- REVEAL ANIMATIONS ---- */
-.reveal-up {
+/* Gated on html.js so content stays visible if JS fails or is disabled (SEO/a11y safe). */
+.js .reveal-up {
   opacity: 0;
   transform: translateY(40px);
   transition: opacity 0.75s cubic-bezier(0.4, 0, 0.2, 1),
               transform 0.75s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.reveal-up.revealed {
+.js .reveal-up.revealed {
   opacity: 1;
   transform: translateY(0);
 }
@@ -1495,4 +1503,157 @@ img {
   .solutions-section { padding: 80px 0; }
   .why-section { padding: 80px 0; }
   .contact { padding: 80px 0; }
+}
+
+/* ============================================================
+   SHARED COMPONENTS (consolidated — loaded on every page)
+   ============================================================ */
+
+/* ---- INNER-PAGE HERO (used by all subpages; promoted from nosotros.css) ---- */
+.page-hero {
+  position: relative;
+  padding: 180px 0 100px;
+  overflow: hidden;
+  background: var(--navy-dark);
+}
+
+.page-hero-bg { position: absolute; inset: 0; }
+.page-hero-particles { position: absolute; inset: 0; }
+
+.page-hero-gradient {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 30% 50%, rgba(255, 103, 29, 0.06) 0%, transparent 60%),
+    linear-gradient(180deg, var(--navy-dark) 0%, transparent 40%, transparent 60%, var(--navy-dark) 100%);
+}
+
+.page-hero-content { position: relative; z-index: 2; max-width: 800px; }
+
+.page-hero-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 20px;
+}
+
+.page-hero-title em { font-style: normal; color: var(--orange); }
+
+.page-hero-subtitle {
+  font-size: clamp(1rem, 1.6vw, 1.15rem);
+  color: var(--gray-300);
+  line-height: 1.7;
+  max-width: 580px;
+}
+
+/* ---- SECTION HEADER ON DARK SECTIONS ---- */
+.section-header--light .section-title { color: var(--white); }
+.section-header--light .section-desc { color: var(--gray-300); }
+
+/* ---- WHATSAPP FLOATING BUTTON + CONTACT CTA (de-duplicated from 6 inline blocks) ---- */
+.wa-float {
+  position: fixed; bottom: 24px; right: 24px;
+  width: 60px; height: 60px;
+  background: #0f7a42; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 24px rgba(15, 122, 66, 0.35);
+  z-index: 9998; transition: transform 0.2s ease, box-shadow 0.2s ease; cursor: pointer;
+}
+.wa-float:hover { transform: scale(1.08); box-shadow: 0 12px 32px rgba(15, 122, 66, 0.5); }
+.wa-float svg { width: 32px; height: 32px; fill: #fff; }
+.wa-float-label {
+  position: absolute; right: 72px; top: 50%; transform: translateY(-50%);
+  background: #111; color: #fff; padding: 8px 14px; border-radius: 8px;
+  font-size: 0.85rem; font-weight: 500; white-space: nowrap;
+  opacity: 0; pointer-events: none; transition: opacity 0.2s ease;
+}
+.wa-float:hover .wa-float-label { opacity: 1; }
+@media (max-width: 640px) {
+  .wa-float { bottom: 16px; right: 16px; width: 54px; height: 54px; }
+  .wa-float-label { display: none; }
+}
+
+.contact-cta-wa {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: #0f7a42; color: #fff;
+  padding: 14px 26px; border-radius: 100px; font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.contact-cta-wa:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(15, 122, 66, 0.4); }
+.contact-cta-wa svg { width: 22px; height: 22px; fill: #fff; }
+
+/* ---- FORM STATUS MESSAGE ---- */
+.form-message {
+  margin-top: 16px;
+  padding: 14px 18px;
+  border-radius: 8px;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+.form-message[hidden] { display: none; }
+.form-message--success {
+  background: rgba(34, 197, 94, 0.12);
+  color: #15803d;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+.form-message--error {
+  background: rgba(239, 68, 68, 0.1);
+  color: #b91c1c;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+/* ---- KEYBOARD FOCUS (visible only for keyboard users; no change for mouse) ---- */
+:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ---- SKIP TO CONTENT ---- */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 10000;
+  background: var(--navy-dark);
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 0 0 8px 0;
+  font-weight: 600;
+}
+.skip-link:focus {
+  left: 0;
+  outline: 3px solid var(--orange);
+}
+
+/* ---- REDUCED MOTION (WCAG 2.3.3) ---- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal-up, .js .reveal-up { opacity: 1 !important; transform: none !important; }
+  .marquee-track, .badge-dot, .scroll-line, .hero-title em { animation: none !important; }
+}
+
+/* ---- INNER-PAGE HERO MOBILE ---- */
+@media (max-width: 768px) {
+  .page-hero { padding: 140px 0 80px; }
+  .page-hero-title { font-size: clamp(1.7rem, 5vw, 2.8rem); }
+}
+
+/* ---- MOBILE SECTION PADDING (subpages keep parity with homepage 80px) ---- */
+@media (max-width: 480px) {
+  .pallet-types, .ispm-section, .pallet-guide, .pallet-faq,
+  .pooling-explainer, .pooling-cycle, .pooling-benefits, .pooling-profile,
+  .palletless-explainer, .palletless-cycle, .palletless-numbers,
+  .palletless-investment, .palletless-profile,
+  .insumos-section, .insumos-value,
+  .cta-section {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
 }

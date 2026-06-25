@@ -1,0 +1,221 @@
+/* ========================================
+   ONEPACK SOLUTIONS — INSUMOS PAGE
+   ======================================== */
+
+/* ---- HERO ---- */
+.insumos-hero-img {
+  position: absolute;
+  inset: 0;
+  background-image: url('../../assets/imgs/senior-male-warehouse-worker-or-a-supervisor-unloa-2026-03-10-02-11-16-utc.webp');
+  background-size: cover;
+  background-position: center 30%;
+  opacity: 0.18;
+}
+
+/* ---- PRODUCTS SECTION ---- */
+.insumos-section {
+  padding: 120px 0;
+  background: var(--gray-100);
+  color: var(--navy-dark);
+}
+
+.insumos-section .section-title { color: var(--navy); }
+.insumos-section .section-desc { color: var(--gray-500); }
+
+.insumos-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  justify-content: center;
+  margin-top: 64px;
+}
+
+.insumo-card {
+  flex: 0 1 calc(33.333% - 20px);
+  min-width: 280px;
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition);
+}
+
+.insumo-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 24px 56px rgba(0, 30, 97, 0.1);
+  border-color: rgba(255, 103, 29, 0.25);
+}
+
+.insumo-card-img {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+}
+
+.insumo-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.insumo-card:hover .insumo-card-img img {
+  transform: scale(1.04);
+}
+
+.insumo-card-body {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.insumo-card-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.insumo-card-body h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: -0.02em;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.insumo-tagline {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--orange);
+  margin: 0;
+  font-style: italic;
+}
+
+.insumo-card-body > p:not(.insumo-tagline) {
+  font-size: 0.9rem;
+  color: var(--gray-500);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.insumo-uses {
+  list-style: none;
+  padding: 0;
+  margin: 4px 0 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.insumo-uses li {
+  font-size: 0.85rem;
+  color: var(--gray-500);
+  padding-left: 18px;
+  position: relative;
+  line-height: 1.5;
+}
+
+.insumo-uses li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 6px;
+  height: 6px;
+  background: var(--orange);
+  border-radius: 50%;
+  opacity: 0.7;
+}
+
+.insumo-card-body .btn {
+  margin-top: auto;
+  text-align: center;
+}
+
+/* ---- VALUE SECTION ---- */
+.insumos-value {
+  padding: 120px 0;
+  background: var(--navy-mid);
+}
+
+.value-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.value-text .section-title { margin-bottom: 24px; }
+
+.value-text > p {
+  font-size: 1rem;
+  color: var(--gray-300);
+  line-height: 1.8;
+  margin-bottom: 32px;
+}
+
+.value-points {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.value-point {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.value-point svg { flex-shrink: 0; margin-top: 2px; }
+
+.value-point span {
+  font-size: 0.95rem;
+  color: var(--gray-300);
+  line-height: 1.5;
+}
+
+.value-visual {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.value-visual img {
+  width: 100%;
+  height: 480px;
+  object-fit: cover;
+  display: block;
+}
+
+/* ---- FAQ override ---- */
+.insumos-faq {
+  background: var(--gray-100);
+  color: var(--navy-dark);
+}
+
+.insumos-faq .section-title { color: var(--navy); }
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 1100px) {
+  .insumo-card {
+    flex: 0 1 calc(50% - 14px);
+  }
+}
+
+@media (max-width: 1024px) {
+  .value-layout { grid-template-columns: 1fr; gap: 48px; }
+  .value-visual img { height: 320px; }
+}
+
+@media (max-width: 600px) {
+  .insumo-card {
+    flex: 0 1 100%;
+    min-width: 0;
+  }
+}
