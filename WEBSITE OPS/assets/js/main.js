@@ -294,15 +294,15 @@ function initHeroCanvas() {
 
   function initParticles() {
     particles = [];
-    const count = Math.min(Math.floor((canvas.width * canvas.height) / 13000), 100);
+    const count = Math.min(Math.floor((canvas.width * canvas.height) / 10000), 130);
     for (let i = 0; i < count; i++) {
       particles.push({
         x:       Math.random() * canvas.width,
         y:       Math.random() * canvas.height,
-        vx:      (Math.random() - 0.5) * 0.35,
-        vy:      (Math.random() - 0.5) * 0.35,
-        radius:  Math.random() * 1.8 + 0.8,
-        opacity: Math.random() * 0.4 + 0.1,
+        vx:      (Math.random() - 0.5) * 0.45,
+        vy:      (Math.random() - 0.5) * 0.45,
+        radius:  Math.random() * 2 + 0.9,
+        opacity: Math.random() * 0.45 + 0.2,
       });
     }
   }
@@ -316,8 +316,8 @@ function initHeroCanvas() {
         const dy   = particles[i].y - particles[j].y;
         const dist = Math.sqrt(dx * dx + dy * dy);
 
-        if (dist < 140) {
-          const alpha = (1 - dist / 140) * 0.12;
+        if (dist < 150) {
+          const alpha = (1 - dist / 150) * 0.18;
           ctx.beginPath();
           ctx.strokeStyle = `rgba(255,103,29,${alpha})`;
           ctx.lineWidth   = 0.5;

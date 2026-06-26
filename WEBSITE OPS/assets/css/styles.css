@@ -323,19 +323,6 @@ img {
   margin-bottom: 32px;
 }
 
-.badge-dot {
-  width: 8px;
-  height: 8px;
-  background: var(--orange);
-  border-radius: 50%;
-  animation: pulse-dot 2s infinite;
-}
-
-@keyframes pulse-dot {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(1.3); }
-}
-
 .hero-title {
   font-size: clamp(2.4rem, 5.5vw, 4.2rem);
   font-weight: 900;
@@ -1636,7 +1623,7 @@ img {
     scroll-behavior: auto !important;
   }
   .reveal-up, .js .reveal-up { opacity: 1 !important; transform: none !important; }
-  .marquee-track, .badge-dot, .scroll-line, .hero-title em { animation: none !important; }
+  .marquee-track, .scroll-line, .hero-title em { animation: none !important; }
 }
 
 /* ---- INNER-PAGE HERO MOBILE ---- */
