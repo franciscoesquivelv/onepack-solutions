@@ -1,5 +1,5 @@
 /* ========================================
-   ONEPACK SOLUTIONS — MAIN JS
+   ONEPACK SOLUTIONS - MAIN JS
    ======================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -274,7 +274,7 @@ function initSolutionsTabs() {
   });
 }
 
-// ---- HERO CANVAS — PARTICLE NETWORK ----
+// ---- HERO CANVAS - PARTICLE NETWORK ----
 function initHeroCanvas() {
   const canvas = document.getElementById('heroCanvas');
   if (!canvas) return;

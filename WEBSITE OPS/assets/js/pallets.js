@@ -1,5 +1,5 @@
 /* ========================================
-   ONEPACK SOLUTIONS — SUBPAGE FAQ ACCORDION
+   ONEPACK SOLUTIONS - SUBPAGE FAQ ACCORDION
    (loaded on pallets, pooling, palletless, insumos)
    ======================================== */
 

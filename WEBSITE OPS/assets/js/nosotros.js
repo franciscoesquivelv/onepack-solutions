@@ -1,5 +1,5 @@
 /* ========================================
-   ONEPACK SOLUTIONS — NOSOTROS PAGE JS
+   ONEPACK SOLUTIONS - NOSOTROS PAGE JS
    ======================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
