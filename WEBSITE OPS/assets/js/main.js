@@ -384,3 +384,17 @@ function initHeroCanvas() {
   resize();
   draw();
 }
+
+// ---- MOBILE STICKY BAR ----
+const mobileStickyBar = document.getElementById('mobileStickyBar');
+if (mobileStickyBar) {
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      mobileStickyBar.classList.add('is-visible');
+      document.body.classList.add('sticky-bar-visible');
+    } else {
+      mobileStickyBar.classList.remove('is-visible');
+      document.body.classList.remove('sticky-bar-visible');
+    }
+  }, { passive: true });
+}
