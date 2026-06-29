@@ -1610,6 +1610,7 @@ img {
 .cta-micro { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 7px; text-align: center; letter-spacing: 0.01em; }
 .btn-with-micro { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
 .cta-box .btn-with-micro { flex-shrink: 0; }
+.tab-cta-pair { display: flex; gap: 12px; flex-wrap: wrap; }
 
 .contact-cta-wa {
   display: inline-flex; align-items: center; gap: 10px;
