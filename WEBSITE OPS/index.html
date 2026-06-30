@@ -532,6 +532,7 @@
           <input type="hidden" name="access_key" value="d542179f-c955-44ca-97e3-5d65ca54f1a0">
           <input type="hidden" name="subject" value="Contacto Web, Onepack Solutions">
           <input type="hidden" name="from_name" value="Onepack Sitio Web">
+          <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
           <div class="form-row">
             <div class="form-group">
               <label for="name">Nombre</label>
@@ -542,9 +543,15 @@
               <input type="text" id="company" name="company" placeholder="Nombre de tu empresa">
             </div>
           </div>
-          <div class="form-group">
-            <label for="email">Correo electrónico</label>
-            <input type="email" id="email" name="email" placeholder="correo@empresa.com" required>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Correo electrónico</label>
+              <input type="email" id="email" name="email" placeholder="correo@empresa.com" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">WhatsApp / Teléfono</label>
+              <input type="tel" id="phone" name="phone" placeholder="+503 7000-0000">
+            </div>
           </div>
           <div class="form-group">
             <label for="service">¿Qué te interesa?</label>
@@ -552,14 +559,15 @@
               <option value="">Selecciona una opción</option>
               <option value="tarimas-madera">Tarimas de madera</option>
               <option value="tarimas-plasticas">Tarimas plásticas</option>
-              <option value="tarimas-madera-plastica">Tarimas madera-plástica</option>
-              <option value="slip-sheets">Slip Sheets / Anti-Slip</option>
+              <option value="eco-madera">Tarimas eco-madera</option>
+              <option value="pallet-pooling">Pallet pooling</option>
+              <option value="palletless">Sistema palletless</option>
+              <option value="slip-sheets">Slip sheets</option>
               <option value="flejes">Flejes</option>
               <option value="esquineros">Esquineros</option>
               <option value="stretch-film">Stretch film</option>
               <option value="tape">Tape industrial</option>
               <option value="grapa">Grapa troquelada</option>
-              <option value="palletless">Sistema Palletless</option>
               <option value="otro">Otro / No estoy seguro</option>
             </select>
           </div>

@@ -1612,6 +1612,32 @@ img {
 .cta-box .btn-with-micro { flex-shrink: 0; }
 .tab-cta-pair { display: flex; gap: 12px; flex-wrap: wrap; }
 
+/* ---- TAMBIÉN OFRECEMOS (cross-links entre subpáginas) ---- */
+.also-offer {
+  padding: 32px 0;
+  background: #060d18;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.also-offer-label {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.08em; color: #6b7280;
+  text-align: center; margin-bottom: 14px;
+}
+.also-offer-grid { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.also-offer-pill {
+  display: inline-block; font-size: 13px; font-weight: 500;
+  color: #c8cdd8; padding: 8px 18px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 100px; text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.also-offer-pill:hover {
+  background: rgba(255,103,29,0.1);
+  border-color: rgba(255,103,29,0.4);
+  color: #ff671d;
+}
+
 .contact-cta-wa {
   display: inline-flex; align-items: center; gap: 10px;
   margin-top: 28px;
