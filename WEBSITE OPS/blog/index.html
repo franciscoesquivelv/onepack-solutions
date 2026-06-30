@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es-SV">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>document.documentElement.classList.add('js');</script>
+  <title>Blog | Onepack Solutions — Embalaje industrial en El Salvador</title>
+  <meta name="description" content="Guías técnicas sobre tarimas, pallets, embalaje industrial y exportación en El Salvador. Por el equipo de Onepack Solutions.">
+  <link rel="icon" type="image/png" href="/assets/logos/favicon.png">
+
+  <link rel="canonical" href="https://www.onepack.com.sv/blog">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Onepack Solutions">
+  <meta name="theme-color" content="#0e1d18">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.onepack.com.sv/blog">
+  <meta property="og:title" content="Blog | Onepack Solutions">
+  <meta property="og:description" content="Guías técnicas sobre tarimas, pallets, embalaje industrial y exportación en El Salvador.">
+  <meta property="og:image" content="https://www.onepack.com.sv/assets/imgs/og/og-home.png">
+  <meta property="og:locale" content="es_SV">
+  <meta property="og:site_name" content="Onepack Solutions">
+
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <style>
+    .blog-hero {
+      padding: 120px 0 64px;
+      background: linear-gradient(180deg, #060d18 0%, #0a1628 100%);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .blog-hero-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #ff671d;
+      background: rgba(255,103,29,0.1);
+      border: 1px solid rgba(255,103,29,0.25);
+      border-radius: 100px;
+      padding: 4px 12px;
+      margin-bottom: 20px;
+    }
+    .blog-hero-title {
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+    .blog-hero-sub {
+      font-size: 18px;
+      color: #7a8899;
+      max-width: 520px;
+    }
+
+    .blog-grid-wrap {
+      padding: 64px 0 96px;
+      background: #07101e;
+    }
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 24px;
+    }
+    .blog-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 14px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    }
+    .blog-card:hover {
+      border-color: rgba(255,103,29,0.3);
+      background: rgba(255,103,29,0.04);
+      transform: translateY(-3px);
+    }
+    .blog-card-tag {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #ff671d;
+      margin-bottom: 14px;
+    }
+    .blog-card-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #e8edf5;
+      line-height: 1.3;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+    .blog-card-excerpt {
+      font-size: 14px;
+      color: #7a8899;
+      line-height: 1.6;
+      flex: 1;
+      margin-bottom: 24px;
+    }
+    .blog-card-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      color: rgba(255,255,255,0.25);
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .blog-card-read {
+      color: #ff671d;
+      font-weight: 600;
+    }
+
+    @media (max-width: 640px) {
+      .blog-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <a href="#main" class="skip-link">Saltar al contenido</a>
+  <div class="nav-backdrop" id="navBackdrop"></div>
+
+  <nav class="navbar navbar--solid" id="navbar">
+    <div class="nav-container">
+      <a href="/" class="nav-logo" aria-label="Onepack Solutions, Inicio">
+        <img src="/assets/logos/logo-white.svg" alt="Onepack Solutions" class="nav-logo-img">
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="/pallets" class="nav-link">Tarimas</a>
+        <a href="/pooling" class="nav-link">Pooling</a>
+        <a href="/palletless" class="nav-link">Palletless</a>
+        <a href="/insumos" class="nav-link">Insumos</a>
+        <a href="/nosotros" class="nav-link">Nosotros</a>
+        <a href="/#contacto" class="nav-link nav-link--cta">Contáctanos</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Menú" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main id="main">
+
+  <section class="blog-hero">
+    <div class="container">
+      <div class="blog-hero-tag">Blog</div>
+      <h1 class="blog-hero-title">Guías de embalaje<br>para <em>empresas en El Salvador.</em></h1>
+      <p class="blog-hero-sub">Regulatorio, técnico y operativo. Sin relleno, sin marketing vacío.</p>
+    </div>
+  </section>
+
+  <section class="blog-grid-wrap">
+    <div class="container">
+      <div class="blog-grid">
+
+        <a href="/blog/nimf-15-tarimas-madera-exportacion-el-salvador" class="blog-card">
+          <span class="blog-card-tag">Exportación · Regulatorio</span>
+          <h2 class="blog-card-title">NIMF-15: qué es, qué exige y por qué una tarima incorrecta puede detener tu exportación</h2>
+          <p class="blog-card-excerpt">Tratamientos aceptados, cómo leer el sello, qué materiales están exentos y las consecuencias reales de exportar sin certificación. Guía completa para El Salvador.</p>
+          <div class="blog-card-meta">
+            <span>30 jun 2026 · 12 min</span>
+            <span class="blog-card-read">Leer →</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="/assets/logos/logo-white.svg" alt="Onepack Solutions" class="footer-logo">
+          <p>Soluciones de embalaje para empresas en El Salvador. Tarimas, flejes, slip sheets, esquineros y más, en un solo proveedor formal.</p>
+          <p class="footer-sister">¿Necesitas mover tu carga? Nuestra empresa hermana <a href="https://gcm.com.sv" target="_blank" rel="noopener">GCM Logística, transporte de carga en Centroamérica</a>.</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4>Navegación</h4>
+            <a href="/">Inicio</a>
+            <a href="/pallets">Tarimas</a>
+            <a href="/pooling">Pallet Pooling</a>
+            <a href="/palletless">Palletless</a>
+            <a href="/insumos">Insumos</a>
+            <a href="/nosotros">Nosotros</a>
+            <a href="/blog">Blog</a>
+          </div>
+          <div class="footer-col">
+            <h4>Tarimas</h4>
+            <a href="/pallets#tipos">Tarimas de madera</a>
+            <a href="/pallets#tipos">Tarimas plásticas</a>
+            <a href="/pallets#tipos">Tarimas eco-madera</a>
+            <a href="/pallets#ispm">ISPM-15 para exportación</a>
+          </div>
+          <div class="footer-col">
+            <h4>Contacto</h4>
+            <a href="mailto:info@onepack.com.sv">info@onepack.com.sv</a>
+            <a href="https://wa.me/50376013921?text=Hola%2C%20quiero%20cotizar" target="_blank" rel="noopener">WhatsApp +503 7601-3921</a>
+            <span>Soyapango, San Salvador</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Onepack Solutions. Todos los derechos reservados.</span>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/50376013921?text=Hola%2C%20quiero%20cotizar" target="_blank" rel="noopener" class="wa-float" aria-label="Chatear por WhatsApp (se abre en una nueva ventana)">
+    <span class="wa-float-label">Cotiza por WhatsApp</span>
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.52 3.48A12 12 0 0 0 3.48 20.52L2 22l1.48-1.48A12 12 0 1 0 20.52 3.48zM12 20.5a8.5 8.5 0 0 1-4.34-1.19l-.31-.18-3.21.84.86-3.13-.2-.32A8.5 8.5 0 1 1 12 20.5z"/><path d="M16.5 14.36c-.25-.13-1.48-.73-1.7-.81-.23-.08-.4-.13-.56.13-.17.25-.65.81-.79.97-.15.17-.29.19-.54.06-.25-.13-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.43-.06-.13-.55-1.34-.76-1.83-.2-.49-.41-.42-.55-.43h-.47c-.16 0-.42.06-.65.31-.22.25-.85.83-.85 2.02 0 1.19.87 2.34.99 2.51.13.17 1.71 2.61 4.13 3.66.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.48-.6 1.69-1.18.21-.58.21-1.08.15-1.18-.06-.11-.23-.17-.48-.3z"/></svg>
+  </a>
+
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

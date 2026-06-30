@@ -14,8 +14,6 @@
     { "source": "/productos", "destination": "/#productos", "permanent": true },
     { "source": "/productos/:slug*", "destination": "/#productos", "permanent": true },
     { "source": "/soluciones", "destination": "/#soluciones", "permanent": true },
-    { "source": "/blog", "destination": "/", "permanent": true },
-    { "source": "/blog/:slug*", "destination": "/", "permanent": true },
     { "source": "/politica-de-privacidad", "destination": "/", "permanent": true },
     { "source": "/cart", "destination": "/", "permanent": true }
   ],
