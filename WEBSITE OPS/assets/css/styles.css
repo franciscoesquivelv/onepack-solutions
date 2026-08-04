@@ -9,6 +9,12 @@
   box-sizing: border-box;
 }
 
+/* El navbar es fixed (~72px): compensa el aterrizaje de todas las anclas,
+   incluidas las que vienen de otra pagina (/pallets#ispm, /#contacto, etc.) */
+html {
+  scroll-padding-top: 96px;
+}
+
 :root {
   --orange: #ff671d;
   --orange-light: #ff8a4c;
@@ -1101,7 +1107,8 @@ img {
   border-radius: var(--radius);
   color: var(--white);
   font-family: var(--font);
-  font-size: 0.95rem;
+  /* 16px exactos: por debajo de esto Safari iOS hace zoom automatico al enfocar */
+  font-size: 1rem;
   transition: var(--transition);
   outline: none;
   -webkit-appearance: none;
@@ -1596,12 +1603,14 @@ img {
     transition: transform 0.4s ease, opacity 0.4s ease;
   }
   .mobile-sticky-bar.is-visible { transform: translateY(0); opacity: 1; }
+  /* Evita que la barra fija tape la ultima linea del footer */
+  body { padding-bottom: 56px; }
   .mobile-sticky-text { font-size: 13px; color: #8b92a5; font-weight: 500; flex: 1; margin-right: 12px; }
   .mobile-sticky-cta {
     display: inline-flex; align-items: center;
     background: #25D366; color: #fff;
-    font-size: 12px; font-weight: 700;
-    padding: 9px 16px; border-radius: 100px;
+    font-size: 13px; font-weight: 700;
+    padding: 12px 20px; border-radius: 100px;
     text-decoration: none; white-space: nowrap; flex-shrink: 0;
   }
 }
@@ -1721,4 +1730,25 @@ img {
     padding-top: 80px;
     padding-bottom: 80px;
   }
+}
+
+
+/* ---- ENLACES DE CONTENIDO EN TABS DE SOLUCIONES ---- */
+.tab-inline-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  margin-top: 16px;
+}
+.tab-inline-links a {
+  font-size: 0.88rem;
+  color: var(--gray-400, #8b92a5);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 103, 29, 0.35);
+  padding: 4px 0;
+  transition: color 0.2s, border-color 0.2s;
+}
+.tab-inline-links a:hover {
+  color: var(--orange);
+  border-bottom-color: var(--orange);
 }

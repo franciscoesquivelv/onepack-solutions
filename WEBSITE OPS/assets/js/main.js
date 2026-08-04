@@ -73,6 +73,25 @@ document.addEventListener('DOMContentLoaded', () => {
     backdrop.addEventListener('click', closeNav);
   }
 
+  // Escape cierra el menu y devuelve el foco al boton (accesibilidad de teclado)
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks && navLinks.classList.contains('open')) {
+      closeNav();
+      if (navToggle) navToggle.focus();
+    }
+  });
+
+  // Al pasar a desktop con el menu abierto, el body quedaba con overflow bloqueado
+  let navResizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(navResizeTimer);
+    navResizeTimer = setTimeout(() => {
+      if (window.innerWidth > 768 && navLinks && navLinks.classList.contains('open')) {
+        closeNav();
+      }
+    }, 150);
+  }, { passive: true });
+
   // ---- HERO CANVAS ----
   initHeroCanvas();
 

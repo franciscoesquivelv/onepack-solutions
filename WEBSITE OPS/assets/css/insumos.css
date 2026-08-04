@@ -213,7 +213,7 @@
   .value-visual img { height: 320px; }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 640px) {
   .insumo-card {
     flex: 0 1 100%;
     min-width: 0;
