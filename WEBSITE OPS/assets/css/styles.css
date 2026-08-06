@@ -20,6 +20,8 @@ html {
   --orange-light: #ff8a4c;
   --orange-dark: #e55a10;
   --orange-text: #c2490a; /* AA-accessible orange for text/icons on light backgrounds (4.9:1) */
+  --orange-cta: #c85117;      /* fondo de botones con texto blanco (4.52:1) */
+  --orange-cta-hover: #b04512; /* hover del anterior (5.67:1) */
   --navy: #001e61;
   --navy-dark: #0a0f1e;
   --navy-mid: #111a35;
@@ -218,7 +220,7 @@ img {
 }
 
 .nav-link--cta {
-  background: var(--orange);
+  background: var(--orange-cta);
   color: var(--white) !important;
   padding: 10px 24px;
   border-radius: 100px;
@@ -230,7 +232,7 @@ img {
 }
 
 .nav-link--cta:hover {
-  background: var(--orange-dark);
+  background: var(--orange-cta-hover);
   transform: translateY(-1px);
 }
 
@@ -413,12 +415,12 @@ img {
 }
 
 .btn-primary {
-  background: var(--orange);
+  background: var(--orange-cta);
   color: var(--white);
 }
 
 .btn-primary:hover {
-  background: var(--orange-dark);
+  background: var(--orange-cta-hover);
   transform: translateY(-2px);
   box-shadow: 0 8px 30px rgba(255, 103, 29, 0.35);
 }
@@ -1619,7 +1621,7 @@ img {
   .mobile-sticky-text { font-size: 13px; color: #8b92a5; font-weight: 500; flex: 1; margin-right: 12px; }
   .mobile-sticky-cta {
     display: inline-flex; align-items: center;
-    background: #25D366; color: #fff;
+    background: #0f7a42; color: #fff;
     font-size: 13px; font-weight: 700;
     padding: 12px 20px; border-radius: 100px;
     text-decoration: none; white-space: nowrap; flex-shrink: 0;
