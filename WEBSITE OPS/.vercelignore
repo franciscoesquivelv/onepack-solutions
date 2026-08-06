@@ -1,4 +1,4 @@
-# Archivos fuente / internos — no deben servirse públicamente en onepack.com.sv
+# Archivos fuente / internos, no deben servirse públicamente en onepack.com.sv
 # El sitio solo usa la carpeta assets/ ; estas son duplicados o material de origen.
 # Leading / anchors each pattern to the deployment root to prevent accidental depth-matching.
 /AGENTS/
@@ -7,4 +7,6 @@
 /Typography/
 /Imgs/
 /Logos-web*/
+# Borradores en markdown de artículos que ya están publicados en HTML
+/content/
 **/.DS_Store

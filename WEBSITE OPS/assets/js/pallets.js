@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     btn.setAttribute('aria-controls', answer.id);
     if (!btn.hasAttribute('aria-expanded')) btn.setAttribute('aria-expanded', 'false');
-    answer.setAttribute('role', 'region');
     answer.setAttribute('aria-labelledby', btn.id);
   });
 

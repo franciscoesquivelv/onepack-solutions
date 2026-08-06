@@ -172,9 +172,14 @@
   display: grid;
   grid-template-rows: 0fr;
   background: var(--white);
+  /* visibility saca la respuesta colapsada del arbol de accesibilidad y del
+     orden de tabulacion, y a diferencia de display:none si se puede animar */
+  /* Sin transicion en visibility: debe conmutar de inmediato, si no el
+     contenido recien abierto queda oculto mientras dura la animacion */
+  visibility: hidden;
   transition: grid-template-rows 0.3s ease;
 }
-.faq-answer.open { grid-template-rows: 1fr; }
+.faq-answer.open { grid-template-rows: 1fr; visibility: visible; }
 .faq-answer p {
   overflow: hidden;
   min-height: 0;

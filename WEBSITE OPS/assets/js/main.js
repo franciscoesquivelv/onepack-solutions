@@ -8,26 +8,26 @@ document.addEventListener('DOMContentLoaded', () => {
   const loader = document.getElementById('loader');
   const loaderFill = document.querySelector('.loader-bar-fill');
 
-  if (loader && loaderFill) {
-    let progress = 0;
-    document.body.style.overflow = 'hidden';
+  // El contenido se revela de inmediato: antes esperaba a un contador aleatorio
+  // de 1.0 a 2.8 s con todo el .reveal-up en opacity 0.
+  initAnimations();
 
-    const loaderInterval = setInterval(() => {
-      progress += Math.random() * 15 + 5;
-      if (progress >= 100) {
-        progress = 100;
-        clearInterval(loaderInterval);
-        loaderFill.style.width = '100%';
-        setTimeout(() => {
-          loader.classList.add('hidden');
-          document.body.style.overflow = '';
-          initAnimations();
-        }, 400);
-      }
-      loaderFill.style.width = progress + '%';
-    }, 120);
-  } else {
-    initAnimations();
+  if (loader && loaderFill) {
+    // La barra refleja la carga real de la pagina, no un progreso simulado
+    loaderFill.style.width = '65%';
+
+    const hideLoader = () => {
+      loaderFill.style.width = '100%';
+      setTimeout(() => loader.classList.add('hidden'), 200);
+    };
+
+    if (document.readyState === 'complete') {
+      hideLoader();
+    } else {
+      window.addEventListener('load', hideLoader, { once: true });
+      // Red de seguridad: si algun recurso externo cuelga, no dejar el loader puesto
+      setTimeout(hideLoader, 3000);
+    }
   }
 
   // ---- NAVBAR SCROLL ----
@@ -96,15 +96,19 @@ document.addEventListener('DOMContentLoaded', () => {
   initHeroCanvas();
 
   // ---- SMOOTH SCROLL ----
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       const href = this.getAttribute('href');
       if (href === '#') return;
+      // El skip-link debe mover el foco de verdad, no solo desplazar la vista
+      if (this.classList.contains('skip-link')) return;
       e.preventDefault();
       const target = document.querySelector(href);
       if (target) {
         const y = target.getBoundingClientRect().top + window.pageYOffset - 80;
-        window.scrollTo({ top: y, behavior: 'smooth' });
+        window.scrollTo({ top: y, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
       }
     });
   });
@@ -181,6 +185,24 @@ function initRevealOnScroll() {
   }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
   reveals.forEach(el => observer.observe(el));
+
+  // Red de seguridad: .reveal-up arranca en opacity 0, asi que si el observer
+  // no llega a disparar (viewport sin area, navegador raro) la pagina quedaria
+  // en blanco. Pasado un momento, lo que siga oculto se muestra sin animacion.
+  setTimeout(() => {
+    reveals.forEach(el => {
+      if (!el.classList.contains('revealed')) {
+        el.style.transitionDelay = '0s';
+        el.classList.add('revealed');
+      }
+    });
+  }, 2000);
+}
+
+// Respeta la preferencia del sistema en las animaciones que corren desde JS,
+// que el bloque CSS de prefers-reduced-motion no alcanza a cubrir
+function reducedMotion() {
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
 
 // ---- METRIC COUNTER ANIMATION ----
@@ -194,6 +216,12 @@ function initMetricCounters() {
         const target = parseInt(el.dataset.target);
         const suffix = el.dataset.suffix || '';
         const prefix = el.dataset.prefix || '';
+
+        if (reducedMotion()) {
+          el.textContent = prefix + target + suffix;
+          observer.unobserve(el);
+          return;
+        }
         animateCounter(el, target, prefix, suffix);
         observer.unobserve(el);
       }
@@ -221,6 +249,7 @@ function animateCounter(el, target, prefix, suffix) {
 // ---- PRODUCT CARD TILT (desktop only) ----
 function initProductCardTilt() {
   if (window.matchMedia('(hover: none)').matches) return;
+  if (reducedMotion()) return;
 
   const cards = document.querySelectorAll('.product-card, .why-card');
 
@@ -271,7 +300,7 @@ function initSolutionsTabs() {
 
     // On mobile: scroll tab into view
     if (window.innerWidth <= 768) {
-      btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      btn.scrollIntoView({ behavior: reducedMotion() ? 'auto' : 'smooth', block: 'nearest', inline: 'center' });
     }
   }
 

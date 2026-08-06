@@ -29,6 +29,8 @@ html {
   --gray-300: #c4c4cc;
   --gray-400: #8e8e96;
   --gray-500: #6b6b73;
+  /* variante para texto sobre superficies oscuras: #6b6b73 solo da 3.61:1 ahi */
+  --gray-500-dark: #82828a;
 
   --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --radius: 12px;
@@ -1116,7 +1118,7 @@ img {
 
 .form-group input::placeholder,
 .form-group textarea::placeholder {
-  color: var(--gray-500);
+  color: var(--gray-500-dark);
 }
 
 .form-group input:focus,
@@ -1176,7 +1178,7 @@ img {
 /* Cross-link a la empresa hermana (GCM Logística) */
 .footer-brand .footer-sister {
   font-size: 0.85rem;
-  color: var(--gray-500);
+  color: var(--gray-500-dark);
   margin-top: 14px;
 }
 .footer-brand .footer-sister a {
@@ -1192,7 +1194,7 @@ img {
   gap: 40px;
 }
 
-.footer-col h4 {
+.footer-col h3 {
   font-size: 0.8rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -1223,7 +1225,13 @@ img {
 
 .footer-bottom span {
   font-size: 0.8rem;
-  color: var(--gray-500);
+  color: var(--gray-500-dark);
+}
+
+/* El carrusel de logos debe poder detenerse (WCAG 2.2.2) */
+.trusted-marquee:hover .marquee-track,
+.trusted-marquee:focus-within .marquee-track {
+  animation-play-state: paused;
 }
 
 /* ---- REVEAL ANIMATIONS ---- */
@@ -1299,10 +1307,13 @@ img {
     align-items: flex-start;
     padding: 40px 32px;
     gap: 8px;
-    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    /* visibility evita que los enlaces del menu cerrado sigan siendo tabulables */
+    visibility: hidden;
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.4s;
     border-left: 1px solid rgba(255,255,255,0.06);
     z-index: 1000;
   }
+  .nav-links.open { visibility: visible; }
 
   .nav-links.open {
     right: 0;
@@ -1629,7 +1640,7 @@ img {
 }
 .also-offer-label {
   font-size: 11px; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.08em; color: #6b7280;
+  letter-spacing: 0.08em; color: #8b92a5;
   text-align: center; margin-bottom: 14px;
 }
 .also-offer-grid { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
@@ -1668,13 +1679,21 @@ img {
 .form-message[hidden] { display: none; }
 .form-message--success {
   background: rgba(34, 197, 94, 0.12);
-  color: #15803d;
+  color: #4da571;
   border: 1px solid rgba(34, 197, 94, 0.3);
 }
 .form-message--error {
   background: rgba(239, 68, 68, 0.1);
-  color: #b91c1c;
+  color: #d67272;
   border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+/* Los inputs declaran outline:none con mayor especificidad, hay que devolverles el anillo */
+.form-group input:focus-visible,
+.form-group select:focus-visible,
+.form-group textarea:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 2px;
 }
 
 /* ---- KEYBOARD FOCUS (visible only for keyboard users; no change for mouse) ---- */
