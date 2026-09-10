@@ -166,6 +166,7 @@ function sendToZohoCRM(form) {
   const name    = form.querySelector('#name')?.value.trim()    || '';
   const company = form.querySelector('#company')?.value.trim() || '';
   const email   = form.querySelector('#email')?.value.trim()   || '';
+  const phone   = form.querySelector('#phone')?.value.trim()   || '';
   const service = form.querySelector('#service')?.value        || '';
   const message = form.querySelector('#message')?.value.trim() || '';
 
@@ -184,6 +185,7 @@ function sendToZohoCRM(form) {
   zohoData.append('First Name', firstName);
   zohoData.append('Last Name', lastName || name || 'Sitio Web');
   zohoData.append('Email', email);
+  zohoData.append('Phone', phone);
   zohoData.append('Lead Source', 'Manual');
   zohoData.append('Description', `Producto de interés: ${service || 'No seleccionado'}\n\nMensaje:\n${message}`);
 
