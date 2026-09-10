@@ -127,6 +127,8 @@ document.addEventListener('DOMContentLoaded', () => {
       submitBtn.textContent = 'Enviando...';
       if (msgEl) { msgEl.hidden = true; msgEl.classList.remove('form-message--success', 'form-message--error'); }
 
+      sendToZohoCRM(form);
+
       try {
         const res  = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: formData });
         const data = await res.json();
@@ -158,6 +160,35 @@ document.addEventListener('DOMContentLoaded', () => {
   initSolutionsTabs();
 
 });
+
+// ---- ZOHO CRM LEAD CAPTURE ----
+function sendToZohoCRM(form) {
+  const name    = form.querySelector('#name')?.value.trim()    || '';
+  const company = form.querySelector('#company')?.value.trim() || '';
+  const email   = form.querySelector('#email')?.value.trim()   || '';
+  const service = form.querySelector('#service')?.value        || '';
+  const message = form.querySelector('#message')?.value.trim() || '';
+
+  const spaceIdx  = name.indexOf(' ');
+  const firstName = spaceIdx > -1 ? name.slice(0, spaceIdx) : '';
+  const lastName  = spaceIdx > -1 ? name.slice(spaceIdx + 1) : name;
+
+  const zohoData = new FormData();
+  zohoData.append('xnQsjsdp', '7a61b17c18ae0aa6dcecec8a409788a340be7450d68082251863caa310f05499');
+  zohoData.append('zc_gad', '');
+  zohoData.append('xmIwtLD', 'd1b9a7d34e39df46c59ea4484c5eb03cd26f9a59efc23c03a2a0979c580895e1c88c27be7e529119d8d6099b9ed3692e');
+  zohoData.append('actionType', 'TGVhZHM=');
+  zohoData.append('returnURL', 'null');
+  zohoData.append('aG9uZXlwb3Q', '');
+  zohoData.append('Company', company || 'No especificada');
+  zohoData.append('First Name', firstName);
+  zohoData.append('Last Name', lastName || name || 'Sitio Web');
+  zohoData.append('Email', email);
+  zohoData.append('Lead Source', 'Manual');
+  zohoData.append('Description', `Producto de interés: ${service || 'No seleccionado'}\n\nMensaje:\n${message}`);
+
+  fetch('https://crm.zoho.com/crm/WebToLeadForm', { method: 'POST', body: zohoData, mode: 'no-cors' }).catch(() => {});
+}
 
 // ========================================
 // INIT ANIMATIONS (called after loader)
