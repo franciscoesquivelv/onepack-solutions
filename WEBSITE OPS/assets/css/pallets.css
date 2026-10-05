@@ -91,6 +91,12 @@
   margin: 0;
 }
 
+.pallet-type-content p a {
+  color: var(--orange);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .pallet-type-specs {
   list-style: none;
   padding: 0;
