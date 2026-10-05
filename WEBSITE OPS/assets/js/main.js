@@ -158,6 +158,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // ---- WHATSAPP SOURCE TAG ----
+  const waOrigin = 'onepack.com.sv' + location.pathname.replace(/\/?index(\.html)?$/, '').replace(/\.html$/, '').replace(/\/$/, '');
+  document.querySelectorAll('a[href*="wa.me/"]').forEach(link => {
+    try {
+      const url  = new URL(link.href);
+      const text = url.searchParams.get('text');
+      if (!text || text.includes('onepack.com.sv')) return;
+      link.href = url.origin + url.pathname + '?text=' + encodeURIComponent(text + ' (desde ' + waOrigin + ')');
+    } catch (err) {}
+  });
+
   // ---- CONVERSION TRACKING ----
   document.addEventListener('click', (e) => {
     const link = e.target.closest && e.target.closest('a[href]');
