@@ -134,6 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const data = await res.json();
 
         if (data.success) {
+          trackEvent('generate_lead', { form_id: 'contacto', service: formData.get('service') || 'sin_seleccion', page_path: location.pathname });
           if (msgEl) {
             msgEl.classList.add('form-message--success');
             msgEl.textContent = 'Mensaje enviado. Te contactamos pronto.';
@@ -144,6 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
           throw new Error(data.message || 'Error al enviar');
         }
       } catch {
+        trackEvent('form_error', { form_id: 'contacto', page_path: location.pathname });
         if (msgEl) {
           msgEl.classList.add('form-message--error');
           msgEl.textContent = 'No se pudo enviar. Escríbenos directamente a info@onepack.com.sv';
@@ -156,10 +158,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // ---- CONVERSION TRACKING ----
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest && e.target.closest('a[href]');
+    if (!link) return;
+    const href = link.getAttribute('href') || '';
+    if (href.includes('wa.me/')) {
+      trackEvent('whatsapp_click', { link_text: (link.textContent || '').trim().slice(0, 60), page_path: location.pathname });
+    } else if (href.startsWith('mailto:')) {
+      trackEvent('email_click', { page_path: location.pathname });
+    }
+  });
+
   // ---- SOLUTIONS TABS ----
   initSolutionsTabs();
 
 });
+
+function trackEvent(name, params) {
+  if (typeof gtag === 'function') gtag('event', name, params || {});
+}
 
 // ---- ZOHO CRM LEAD CAPTURE ----
 function sendToZohoCRM(form) {
