@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const data = await res.json();
 
         if (data.success) {
-          trackEvent('generate_lead', { form_id: 'contacto', service: formData.get('service') || 'sin_seleccion', page_path: location.pathname });
+          trackEvent('generate_lead', { form_id: 'contacto', service: formData.get('service') || 'sin_seleccion', volume: formData.get('volume') || 'sin_seleccion', destination: formData.get('destination') || 'sin_seleccion', page_path: location.pathname });
           if (msgEl) {
             msgEl.classList.add('form-message--success');
             msgEl.textContent = 'Mensaje enviado. Te contactamos pronto.';
@@ -197,6 +197,8 @@ function sendToZohoCRM(form) {
   const email   = form.querySelector('#email')?.value.trim()   || '';
   const phone   = form.querySelector('#phone')?.value.trim()   || '';
   const service = form.querySelector('#service')?.value        || '';
+  const volume  = form.querySelector('#volume')?.selectedOptions[0]?.text      || '';
+  const destino = form.querySelector('#destination')?.selectedOptions[0]?.text || '';
   const message = form.querySelector('#message')?.value.trim() || '';
 
   const spaceIdx  = name.indexOf(' ');
@@ -216,7 +218,7 @@ function sendToZohoCRM(form) {
   zohoData.append('Email', email);
   zohoData.append('Phone', phone);
   zohoData.append('Lead Source', 'Manual');
-  zohoData.append('Description', `Producto de interés: ${service || 'No seleccionado'}\n\nMensaje:\n${message}`);
+  zohoData.append('Description', `Producto de interés: ${service || 'No seleccionado'}\nTarimas al mes: ${volume && !volume.startsWith('Selecciona') ? volume : 'No indicado'}\nDestino de las tarimas: ${destino && !destino.startsWith('Selecciona') ? destino : 'No indicado'}\n\nMensaje:\n${message}`);
 
   fetch('https://crm.zoho.com/crm/WebToLeadForm', { method: 'POST', body: zohoData, mode: 'no-cors' }).catch(() => {});
 }
