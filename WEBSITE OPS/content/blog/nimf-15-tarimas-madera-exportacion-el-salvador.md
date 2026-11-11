@@ -38,16 +38,15 @@ La NIMF-15 aplica exclusivamente a madera sólida o maciza con espesor superior 
 | Cubre NIMF-15 (requiere tratamiento) | No cubre NIMF-15 (sin requisito) |
 |--------------------------------------|----------------------------------|
 | Tarimas de madera sólida | Tarimas de plástico |
-| Vigas y bloques de madera sólida | Tarimas de eco-madera (aglomerado/procesado) |
-| Esquineros de madera maciza | Madera contrachapada (plywood / triplay) |
-| Cajones y jaulas de madera sólida | Tableros de partículas (MDF, HDF, OSB) |
-| Carretes y madera de estiba sólida | Aserrín, virutas y lana de madera |
-| | Palets de madera prensada fabricados a alta temperatura |
+| Vigas y bloques de madera sólida | Madera contrachapada (plywood / triplay) |
+| Esquineros de madera maciza | Tableros de partículas (MDF, HDF, OSB) |
+| Cajones y jaulas de madera sólida | Aserrín, virutas y lana de madera |
+| Carretes y madera de estiba sólida | Palets de madera prensada fabricados a alta temperatura |
 | | Materiales de cartón, papel y metal |
 
 Un punto que genera confusión frecuente en exportadores: si una tarima combina componentes exentos con madera maciza de más de 6 mm, toda la unidad se clasifica como unidad compuesta y debe tratarse y marcarse en su totalidad. La mezcla de materiales no divide las obligaciones —las consolida.
 
-Las [tarimas de plástico y eco-madera](/pallets) no requieren tratamiento NIMF-15 ni certificación adicional para cruzar fronteras, lo que representa una ventaja operativa directa para empresas con exportaciones frecuentes a destinos de alta inspección.
+Las [tarimas de plástico](/pallets) no requieren tratamiento NIMF-15 ni certificación adicional para cruzar fronteras, lo que representa una ventaja operativa directa para empresas con exportaciones frecuentes a destinos de alta inspección.
 
 ---
 
@@ -132,7 +131,7 @@ Es la ruta más directa cuando el cliente o el destino exigen madera sólida. Re
 
 **2. Usar materiales no regulados que no requieren certificación NIMF-15**
 
-Las tarimas de plástico y las tarimas de eco-madera —fabricadas a partir de aglomerado procesado con calor, presión y resinas— están fuera del ámbito de la norma por definición. Para operaciones con exportaciones frecuentes, esta opción elimina el riesgo fitosanitario de raíz: no hay sello que verificar, no hay tratamiento que gestionar para cada embarque, no hay posibilidad de retención por incumplimiento de la norma. Las [tarimas de plástico y eco-madera](/pallets) son especialmente adecuadas para cargas que no requieren la resistencia estructural de la madera sólida.
+Las tarimas de plástico están fuera del ámbito de la norma por definición. Para operaciones con exportaciones frecuentes, esta opción elimina el riesgo fitosanitario de raíz: no hay sello que verificar, no hay tratamiento que gestionar para cada embarque, no hay posibilidad de retención por incumplimiento de la norma. Las [tarimas de plástico](/pallets) son especialmente adecuadas para cargas que no requieren la resistencia estructural de la madera sólida.
 
 **3. Considerar sistemas alternativos para ciertos tipos de carga**
 

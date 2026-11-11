@@ -4,6 +4,11 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/blog/tipos-de-tarimas-madera-plastico-eco-madera",
+      "destination": "/blog/tipos-de-tarimas-madera-plastico",
+      "permanent": true
+    },
+    {
       "source": "/blog/future-of-exportation-industry",
       "destination": "/blog",
       "permanent": true
